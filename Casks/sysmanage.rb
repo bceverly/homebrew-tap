@@ -26,7 +26,7 @@
 #   3. ``cd ~/path/to/homebrew-tap``
 #      ``cp <here>/sysmanage.rb Casks/sysmanage.rb``
 #      ``git commit -am "sysmanage X.Y.Z"``
-#      ``git push``  (network step — user runs, not Claude)
+#      ``git push``
 #   4. End users get upgrades via ``brew upgrade --cask sysmanage``.
 #
 # Single tap repo (``bceverly/homebrew-tap``) hosts BOTH formulas /

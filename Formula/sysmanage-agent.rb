@@ -21,7 +21,7 @@
 #   4. ``cd ~/path/to/homebrew-tap``
 #      ``cp <here>/sysmanage-agent.rb Formula/sysmanage-agent.rb``
 #      ``git commit -am "sysmanage-agent X.Y.Z"``
-#      ``git push``  (network step — user runs, not Claude)
+#      ``git push``
 #   5. End users get the new release via ``brew upgrade`` which finally
 #      makes the in-app "Update Agent" button work on macOS.
 #
