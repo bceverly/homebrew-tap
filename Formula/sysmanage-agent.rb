@@ -37,10 +37,10 @@
 class SysmanageAgent < Formula
   desc "Cross-platform system management agent for SysManage"
   homepage "https://github.com/bceverly/sysmanage-agent"
-  url "https://github.com/bceverly/sysmanage-agent/archive/refs/tags/v2.4.0.31.tar.gz"
-  sha256 "2f393abcf46f857fc2e2bbd82bca5939fd83cfd283f3559ecdfd8280a0c41671"
+  url "https://github.com/bceverly/sysmanage-agent/archive/refs/tags/v2.4.0.32.tar.gz"
+  sha256 "4d33157bc92de9b058cdb7a9e7cc9555e19142d94d2f806ebda3a5ec741e8753"
   license "AGPL-3.0-or-later"
-  version "2.4.0.31"
+  version "2.4.0.32"
 
   depends_on "python@3.12"
 
