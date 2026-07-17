@@ -1,3 +1,7 @@
+# Copyright (c) 2024-2026 Bryan Everly
+# Licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+# See the LICENSE file in the project root for the full terms.
+
 # SysManage server Homebrew cask — Phase 11.8 server-side stub.
 #
 # Cask form rather than formula because the server is a multi-component
@@ -39,8 +43,8 @@
 # evaluation before production deployment to Linux.
 
 cask "sysmanage" do
-  version "3.2.0.2"
-  sha256 "4a0939d674c9538076cc8c8fb1a0859c44ba68acff41b657ce17a6b3b2a1375f"
+  version "3.2.0.3"
+  sha256 "d7ff7ce6afb26be30f95e6a7699020c038dad5507493f41707fa44ed8856c2e6"
 
   url "https://github.com/bceverly/sysmanage/releases/download/v#{version}/sysmanage-#{version}-macos.pkg"
   name "SysManage"
