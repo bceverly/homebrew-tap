@@ -1,3 +1,7 @@
+# Copyright (c) 2024-2026 Bryan Everly
+# Licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+# See the LICENSE file in the project root for the full terms.
+
 # sysmanage-agent Homebrew formula — Phase 11.8 stub.
 #
 # This formula lives in the sysmanage-agent repo *pending* the user
@@ -37,10 +41,10 @@
 class SysmanageAgent < Formula
   desc "Cross-platform system management agent for SysManage"
   homepage "https://github.com/bceverly/sysmanage-agent"
-  url "https://github.com/bceverly/sysmanage-agent/archive/refs/tags/v3.1.0.10.tar.gz"
-  sha256 "7b505cb4aaa535b0c07af8ffe3378cfdbc15fd3711fee38d922717a969d32e0c"
+  url "https://github.com/bceverly/sysmanage-agent/archive/refs/tags/v3.2.0.3.tar.gz"
+  sha256 "01000df9d9e5eb655600d44a0441111a7aa017d1b989ef4269441910077e45c6"
   license "AGPL-3.0-or-later"
-  version "3.1.0.10"
+  version "3.2.0.3"
 
   depends_on "python@3.12"
 
