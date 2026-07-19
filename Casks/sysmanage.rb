@@ -43,8 +43,8 @@
 # evaluation before production deployment to Linux.
 
 cask "sysmanage" do
-  version "3.2.0.7"
-  sha256 "d67af982a0f99b4451327d5e599d877f255a93e362a8449ef2fc0478875f8034"
+  version "3.2.0.8"
+  sha256 "b571590691c6b359386c21b9e300ce2c08f1181414a29b18d6b6c401ebdb30ee"
 
   url "https://github.com/bceverly/sysmanage/releases/download/v#{version}/sysmanage-#{version}-macos.pkg"
   name "SysManage"
