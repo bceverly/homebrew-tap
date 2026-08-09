@@ -41,10 +41,10 @@
 class SysmanageAgent < Formula
   desc "Cross-platform system management agent for SysManage"
   homepage "https://github.com/bceverly/sysmanage-agent"
-  url "https://github.com/bceverly/sysmanage-agent/archive/refs/tags/v3.5.1.8.tar.gz"
-  sha256 "294ed2d9954c27bf90f94689462f93e3bb311bad2c84878fcc23e31b88b1778d"
+  url "https://github.com/bceverly/sysmanage-agent/archive/refs/tags/v3.5.1.9.tar.gz"
+  sha256 "0f1f5d1952512083db99a51eeaf843c08d7eccd8c603f0273138ba1bc79e5bea"
   license "AGPL-3.0-or-later"
-  version "3.5.1.8"
+  version "3.5.1.9"
 
   depends_on "python@3.12"
 
@@ -56,19 +56,52 @@ class SysmanageAgent < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
+
+    # INTEL MACS: pin cryptography below 49 before anything else resolves it.
+    #
+    # cryptography dropped x86_64 macOS wheels at 49.0.0 — 48.0.1 still ships
+    # ``macosx_10_9_universal2``, 49.0.0 and 50.0.0 are ``macosx_11_0_arm64``
+    # ONLY (verified against PyPI 2026-08-09).  requirements-prod.txt asks for
+    # ``cryptography>=48.0.1`` (that floor is the CVE-fixed line), which on an
+    # Intel Mac resolves to 50.0.0, finds no wheel, and falls back to building
+    # from source — needing a Rust toolchain and OpenSSL headers that a plain
+    # ``brew install`` does not provide.  Apple Silicon is unaffected.
+    #
+    # Fixed HERE rather than in requirements-prod.txt on purpose: agent runtime
+    # deps must use bare floors with no environment markers, because COPR's
+    # ``pip download --python-version`` evaluates markers against the build
+    # host and silently drops or mis-resolves them.  Confining the pin to the
+    # macOS packaging keeps that rule intact.
+    #
+    # 48.x carries the same CVE fixes as the floor, so this is a wheel-
+    # availability pin, not a security regression.  Remove it when cryptography
+    # ships Intel wheels again, or when Intel Macs are dropped.
+    if OS.mac? && Hardware::CPU.intel?
+      venv.pip_install "cryptography>=48.0.1,<49"
+    end
+
     venv.pip_install_and_link buildpath
     (etc/"sysmanage-agent").mkpath
     (var/"lib/sysmanage-agent").mkpath
     (var/"log/sysmanage-agent").mkpath
-    # Install the example config — users edit + relocate to
-    # /etc/sysmanage-agent.yaml or /usr/local/etc/sysmanage-agent.yaml
-    # depending on platform.  Don't overwrite if present.
+    # Install the example config.  The service block points
+    # SYSMANAGE_CONFIG at this exact path, so it is read where it lands —
+    # no relocation needed.  Don't overwrite if present.
     config_dest = etc/"sysmanage-agent/sysmanage-agent.yaml"
     cp "sysmanage-agent-system.yaml", config_dest unless config_dest.exist?
   end
 
   service do
     run [opt_bin/"sysmanage-agent"]
+    # The agent parses NO command-line arguments and its built-in search order
+    # is /etc/sysmanage-agent.yaml then ./sysmanage-agent.yaml — neither of
+    # which is where this formula installs the config (HOMEBREW_PREFIX/etc).
+    # Without this the service starts and dies with "Configuration file not
+    # found", and the comment above telling users to relocate to
+    # /usr/local/etc was wrong: that path is not searched either.
+    # SYSMANAGE_CONFIG is the override main.py honours; absolute paths are
+    # used verbatim.
+    environment_variables SYSMANAGE_CONFIG: etc/"sysmanage-agent/sysmanage-agent.yaml"
     keep_alive true
     log_path var/"log/sysmanage-agent/agent.log"
     error_log_path var/"log/sysmanage-agent/agent.err.log"
