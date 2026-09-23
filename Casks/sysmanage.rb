@@ -2,7 +2,7 @@
 # Licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
 # See the LICENSE file in the project root for the full terms.
 
-# SysManage server Homebrew cask — Phase 11.8 server-side stub.
+# SysManage server Homebrew cask -- Phase 11.8 server-side stub.
 #
 # Cask form rather than formula because the server is a multi-component
 # install (Python service + nginx + postgres) and the release workflow
@@ -35,16 +35,16 @@
 #
 # Single tap repo (``bceverly/homebrew-tap``) hosts BOTH formulas /
 # casks:
-#     Formula/sysmanage-agent.rb   (agent — Python venv formula)
-#     Casks/sysmanage.rb           (this file — server .pkg cask)
+#     Formula/sysmanage-agent.rb   (agent -- Python venv formula)
+#     Casks/sysmanage.rb           (this file -- server .pkg cask)
 #
 # Home-lab / dev usage:  Mac users can stand up a local SysManage
 # server with ``brew install --cask bceverly/tap/sysmanage`` for
 # evaluation before production deployment to Linux.
 
 cask "sysmanage" do
-  version "3.9.0.0"
-  sha256 "f25a9f66b0e26260253b57bd175a2f3bd08be3481ff7bfd4bf6ce3205be9d23b"
+  version "3.9.0.2"
+  sha256 "0c146430fdd9af54c405f26ecd76017d3c49210b544be0f86f29b22ad59f6209"
 
   url "https://github.com/bceverly/sysmanage/releases/download/v#{version}/sysmanage-#{version}-macos.pkg"
   name "SysManage"
