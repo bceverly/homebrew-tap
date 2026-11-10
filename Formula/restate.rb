@@ -9,8 +9,8 @@
 class Restate < Formula
   desc "Record what makes a machine different from a fresh install"
   homepage "https://github.com/bceverly/restate"
-  url "https://github.com/bceverly/restate/releases/download/v3.0.0.8/restate-3.0.0.8.tar.gz"
-  sha256 "e5861ffac25d0d8e5accaace0f9660adafba3052393ceac21b86a3ef55729d5f"
+  url "https://github.com/bceverly/restate/releases/download/v3.2.0.2/restate-3.2.0.2.tar.gz"
+  sha256 "1c14d61ce2c9ca258465105875f3cb44832b141513f8e68a5e9e427fc4b5e939"
   license "BSD-2-Clause"
 
   def install
