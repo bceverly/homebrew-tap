@@ -11,8 +11,8 @@
 class RestateProxy < Formula
   desc "Serve restate repositories over HTTPS, append-only"
   homepage "https://github.com/bceverly/restate"
-  url "https://github.com/bceverly/restate/releases/download/v3.2.1.9/restate-3.2.1.9.tar.gz"
-  sha256 "2a86f2ee33663091a015cf00f7e4a7f8fef0b2815618e65c505097db7274819a"
+  url "https://github.com/bceverly/restate/releases/download/v3.2.1.10/restate-3.2.1.10.tar.gz"
+  sha256 "f014638d3659a476242721e3a28b35e6aab0b9c0023638c84b185abaaa103420"
   license "BSD-2-Clause"
 
   depends_on "pkgconf" => :build
